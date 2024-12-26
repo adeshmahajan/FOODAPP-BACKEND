@@ -1,6 +1,7 @@
 const express = require("express");
 //const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const ServerConfig = require("./config/serverConfig");
 const connectDB = require("./config/dbConfig");
@@ -13,12 +14,18 @@ const uploader = require("./middlewares/multerMiddleware");
 const cloudinary = require("./config/cloudinaryConfig");
 const fs = require("fs/promises");
 const productRouter = require("./routes/productRoute");
-const orderRouter = require("./routes/orderRoute")
+const orderRouter = require("./routes/orderRoute");
+const serverConfig = require("./config/serverConfig");
 
 
 
 
 const app = express();
+
+app.use(cors({
+    origin: serverConfig.FRONTEND_URL , // allow to server to accept request from different origin
+    credentials: true, // allow session cookie from browser to pass through
+}));
 
 app.use(cookieParser());
 app.use(express.json());
