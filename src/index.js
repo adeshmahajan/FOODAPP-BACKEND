@@ -23,7 +23,7 @@ const serverConfig = require("./config/serverConfig");
 const app = express();
 
 app.use(cors({
-    origin: serverConfig.FRONTEND_URL , // allow to server to accept request from different origin
+    origin: "https://foodapp-backend-psap.onrender.com" , // allow to server to accept request from different origin
     credentials: true, // allow session cookie from browser to pass through
 }));
 
@@ -38,7 +38,7 @@ app.use('/auth',authRouter);
 app.use('/products',productRouter);
 app.use('/orders',orderRouter);
 
-app.get("/ping", isLoggedIn,(req,res)=>{ 
+app.get("/ping", (req,res)=>{ 
     console.log(req.body);
     console.log(req.cookies);
     return res.json({message:"pong"});
@@ -56,18 +56,18 @@ app.listen(ServerConfig.PORT,async()=>{
     await connectDB();
     console.log(`server started at port ${ServerConfig.PORT}..!!`);   
 
-    /*
-    const newUser = await User.create({
-        email: "abcwerfg@gmail.com",
-        password: "123456",
-        firstName: "joned",
-        lastName: "dowert",
-        mobileNumber: "1234567890"
-    });
+  
+    // const newUser = await User.create({
+    //     email: "abcwerfg@gmail.com",
+    //     password: "123456",
+    //     firstName: "joned",
+    //     lastName: "dowert",
+    //     mobileNumber: "1234567890"
+    // });
 
-    console.log("Created New User");
-    console.log(newUser);
-    */
+    // console.log("Created New User");
+    // console.log(newUser);
+  
 });  
 
 
@@ -76,3 +76,5 @@ app.listen(ServerConfig.PORT,async()=>{
 //  zNBLAFEIGUCeDOKD
 
 //  mongodb+srv://adeshmahajan613:zNBLAFEIGUCeDOKD@cluster0.rwobf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+//https://foodapp-backend-psap.onrender.com

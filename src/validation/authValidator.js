@@ -35,10 +35,10 @@ async function isLoggedIn(req, res, next) {
         if(error.name === "TokenExpiredError") {
             res.cookie("authToken", "", {
                 httpOnly: true,
-                sameSite: "lax",
-                secure: COOKIE_SECURE,
+                //sameSite: "lax",
+                //secure: COOKIE_SECURE,
                 maxAge: 7 * 24 * 60 * 60 * 1000,
-                domain: FRONTEND_URL
+                //domain: FRONTEND_URL
             });
             return res.status(200).json({
                 success: true,
