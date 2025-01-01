@@ -20,10 +20,11 @@ const serverConfig = require("./config/serverConfig");
 
 
 
+
 const app = express();
 
 app.use(cors({
-    origin: "https://foodapp-backend-psap.onrender.com" , // allow to server to accept request from different origin
+    origin: serverConfig.FRONTEND_URL, // allow to server to accept request from different origin
     credentials: true, // allow session cookie from browser to pass through
 }));
 
@@ -52,9 +53,9 @@ app.post('/photo', uploader.single('incomingFile'), async (req,res)=>{
     return res.json({message : 'ok'})
 })
 
-app.listen(ServerConfig.PORT,async()=>{
+app.listen(serverConfig.PORT,async()=>{
     await connectDB();
-    console.log(`server started at port ${ServerConfig.PORT}..!!`);   
+    console.log(`server started at port ${serverConfig.PORT}..!!`);   
 
   
     // const newUser = await User.create({
